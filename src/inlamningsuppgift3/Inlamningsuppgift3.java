@@ -11,7 +11,7 @@ public class Inlamningsuppgift3 {
 
  
     public static void main(String[] args) {
-        //Master branch
+        //Feature branch
     }
     
 }
