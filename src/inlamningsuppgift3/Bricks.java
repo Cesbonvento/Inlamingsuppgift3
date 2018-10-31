@@ -33,7 +33,7 @@ public class Bricks extends JPanel implements ActionListener
             bricks.add(brick); 
         } 
         
-        JButton blankBrick = new JButton(" "); 
+        JButton blankBrick = new JButton(""); 
         //blankBrick.setVisible(true);
         blankBrick.addActionListener(this);
         bricks.add(blankBrick); 
