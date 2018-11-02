@@ -34,11 +34,12 @@ public class Bricks extends JPanel implements ActionListener
            brick.setBackground(Color.decode("#FF5B42"));
            bricks.add(brick); 
            brick.addActionListener(this);  
-           brick.setOpaque(true);
            
         }  
         
         JButton blankBrick = new JButton("");
+        blankBrick.setFont(new Font("",Font.BOLD, 25));
+        blankBrick.setForeground(Color.BLACK);
         blankBrick.setBackground(Color.WHITE);
         blankBrick.addActionListener(this);
         bricks.add(blankBrick);  
@@ -51,13 +52,75 @@ public class Bricks extends JPanel implements ActionListener
         Collections.shuffle(bricks); 
         bricks.forEach((brick) -> {
             add(brick);
-        });  
+        });
+            revalidate();
         }
     
     
     @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actionPerformed(ActionEvent ae) {
+        brick = (JButton) ae.getSource();
+        
+        int emptyIndex = 0; 
+        int currentIndex = 0; 
+        int left = 0; 
+        int right = 0; 
+        int top = 0; 
+        int bottom = 0; 
+        
+        for(int i = 0; i < bricks.size(); i++)
+        {
+            if(bricks.get(i).getText().equals(""))
+            {
+                emptyIndex = i;
+            } 
+            
+            else if(bricks.get(i).getText().equals(brick.getText()))
+            { 
+                currentIndex = i; 
+                left = currentIndex - 1;
+                right = currentIndex + 1; 
+                top = currentIndex - 4; 
+                bottom = currentIndex + 4;
+            }
+            
+            else if (bricks.get(3).getText().equals(brick.getText()) 
+                    || bricks.get(7).getText().equals(brick.getText()) 
+                    || bricks.get(11).getText().equals(brick.getText())) 
+            {
+                    right = currentIndex - 1;
+            } 
+            
+            else if (bricks.get(4).getText().equals(brick.getText()) 
+                    || bricks.get(8).getText().equals(brick.getText()) 
+                    || bricks.get(12).getText().equals(brick.getText())) 
+            {
+                    left = currentIndex + 1;        
+            }
+        
+        } 
+        
+        if (emptyIndex == left || emptyIndex == right || emptyIndex == top
+                || emptyIndex == bottom) 
+        {
+            JButton blankBrick = bricks.get(emptyIndex);
+            blankBrick.setText(brick.getText());
+            brick.setText(""); 
+           
+        } 
+        
+        boolean wonNow = false; 
+        String allNumbers = " "; 
+        allNumbers = bricks.stream().map((b) -> b.getText()).reduce(allNumbers, String::concat);
+      
+        if (allNumbers.trim().equals("123456789101112131415")) 
+        {
+            JOptionPane.showMessageDialog(null, "Grattis du vann!!");
+            wonNow = true;
+        } else {
+            wonNow = false;
+        }
+        
     }
         
 
