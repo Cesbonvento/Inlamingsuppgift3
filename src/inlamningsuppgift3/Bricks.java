@@ -68,6 +68,9 @@ public class Bricks extends JPanel implements ActionListener
         int top = 0; 
         int bottom = 0; 
         
+        /**
+         * Checks the position if you have won
+         */
         for(int i = 0; i < bricks.size(); i++)
         {
             if(bricks.get(i).getText().equals(""))
@@ -100,15 +103,20 @@ public class Bricks extends JPanel implements ActionListener
         
         } 
         
-        if (emptyIndex == left || emptyIndex == right || emptyIndex == top
+        if (emptyIndex == left || emptyIndex == right || emptyIndex == top  
                 || emptyIndex == bottom) 
         {
             JButton blankBrick = bricks.get(emptyIndex);
+            blankBrick.setBackground(Color.decode("#FF5B42"));
             blankBrick.setText(brick.getText());
             brick.setText(""); 
+            brick.setBackground(Color.WHITE);
            
         } 
         
+        /**
+         * Checks if you have won
+         */
         boolean wonNow = false; 
         String allNumbers = " "; 
         allNumbers = bricks.stream().map((b) -> b.getText()).reduce(allNumbers, String::concat);
