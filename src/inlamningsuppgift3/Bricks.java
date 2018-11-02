@@ -26,7 +26,7 @@ public class Bricks extends JPanel implements ActionListener
     { 
         setLayout(new GridLayout(4,4)); 
         
-        bricks = new ArrayList<>(16);        //Ska endast innehålla setxon knappar etc. 
+        bricks = new ArrayList<>(16);                                           //Ska endast innehålla setxon knappar etc. 
         for (int i=1; i<16; i++){
            brick = new JButton(String.valueOf(i)); 
            brick.setFont(new Font("",Font.BOLD, 25));
@@ -53,7 +53,7 @@ public class Bricks extends JPanel implements ActionListener
         bricks.forEach((brick) -> {
             add(brick);
         });
-            revalidate();
+            revalidate();                                                        //Med revalidate så kan man uppdatera bräddan med nya slumpade brickor
         }
     
     
@@ -83,9 +83,17 @@ public class Bricks extends JPanel implements ActionListener
                 currentIndex = i; 
                 left = currentIndex - 1;
                 right = currentIndex + 1; 
-                top = currentIndex - 4; 
+                top = currentIndex - 4;                                         //Eftersom det är en skillnad på 4 index mellan top och ens nuvarande position
                 bottom = currentIndex + 4;
             }
+            
+            /**
+             * De två satserna nedan förhindrar att spelaren ska kunna förflytta
+             * sig vänster eller höger om den tomma brickan befinner sig på 
+             * antingen första berickan på ny rad eller sista. Utan man ska endast 
+             * kunna förflytta sig upp eller ner.
+             *  
+             */
             
             else if (bricks.get(3).getText().equals(brick.getText()) 
                     || bricks.get(7).getText().equals(brick.getText()) 
@@ -121,7 +129,7 @@ public class Bricks extends JPanel implements ActionListener
         String allNumbers = " "; 
         allNumbers = bricks.stream().map((b) -> b.getText()).reduce(allNumbers, String::concat);
       
-        if (allNumbers.trim().equals("123456789101112131415")) 
+        if (allNumbers.equals("123456789101112131415")) 
         {
             JOptionPane.showMessageDialog(null, "Grattis du vann!!");
             wonNow = true;
