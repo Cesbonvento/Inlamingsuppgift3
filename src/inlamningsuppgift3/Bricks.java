@@ -37,10 +37,10 @@ public class Bricks extends JPanel implements ActionListener
            
         }  
         
-        JButton blankBrick = new JButton("");
+        JButton blankBrick = new JButton(" ");
         blankBrick.setFont(new Font("",Font.BOLD, 25));
         blankBrick.setForeground(Color.BLACK);
-        blankBrick.setBackground(Color.WHITE);
+        blankBrick.setBackground(Color.BLACK); 
         blankBrick.addActionListener(this);
         bricks.add(blankBrick);  
         
@@ -73,7 +73,7 @@ public class Bricks extends JPanel implements ActionListener
          */
         for(int i = 0; i < bricks.size(); i++)
         {
-            if(bricks.get(i).getText().equals(""))
+            if(bricks.get(i).getText().equals(" "))
             {
                 emptyIndex = i;
             } 
@@ -117,8 +117,8 @@ public class Bricks extends JPanel implements ActionListener
             JButton blankBrick = bricks.get(emptyIndex);
             blankBrick.setBackground(Color.decode("#FF5B42"));
             blankBrick.setText(brick.getText());
-            brick.setText(""); 
-            brick.setBackground(Color.WHITE);
+            brick.setText(" "); 
+            brick.setBackground(Color.BLACK);
            
         } 
         
