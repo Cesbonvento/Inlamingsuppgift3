@@ -1,5 +1,5 @@
 /*
-    Master branch
+    Feature branch
  */
 package inlamningsuppgift3;
 
@@ -123,16 +123,16 @@ public class Bricks extends JPanel implements ActionListener
         /**
          * Checks if you have won
          */
-        boolean wonNow = false; 
-        String allNumbers = " "; 
-        allNumbers = bricks.stream().map((b) -> b.getText()).reduce(allNumbers, String::concat);
+        boolean won = false; 
+        String allBrickNumbers = " "; 
+        allBrickNumbers = bricks.stream().map((b) -> b.getText()).reduce(allBrickNumbers, String::concat);
       
-        if (allNumbers.equals("123456789101112131415")) 
+        if (allBrickNumbers.equals("123456789101112131415 ")) 
         {
             JOptionPane.showMessageDialog(null, "Grattis du vann!!");
-            wonNow = true;
+            won = true;
         } else {
-            wonNow = false;
+            won = false;
         }
         
     }
